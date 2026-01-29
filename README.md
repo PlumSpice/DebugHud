@@ -1,16 +1,32 @@
-# Hytale Plugin Template
+# MessaginUI Plugin for Hytale
 
-A template for Hytale java plugins. Created by [Up](https://github.com/UpcraftLP), and slightly modified by Kaupenjoe. 
+A Debug hud with lots of player and world information thats usually needed by players.
+<br>
+<b>Note:</b> command can be used by anyone, and is not restricted by OP, or configuration changes for the commands to be run by anyone. 
 
-### Configuring the Template
-If you for example installed the game in a non-standard location, you will need to tell the project about that.
-The recommended way is to create a file at `%USERPROFILE%/.gradle/gradle.properties` to set these properties globally.
+### Screenshots
 
-```properties
-# Set a custom game install location
-hytale.install_dir=path/to/Hytale
+![App Screenshot](Screenshots/img.png)
+<br><br>
 
-# Speed up the decompilation process significantly, by only including the core hytale packages.
-# Recommended if decompiling the game takes a very long time on your PC.
-hytale.decompile_partial=true
-```
+### Current Information
+• Player Position
+<br>
+• Player Ping
+<br>
+• World and Biome Name
+<br>
+• Game Time and IRL Time
+<br>
+• Player Speed and movement state
+<br>
+
+### Working On
+• Working on adding more information to the hud
+<br>
+• Working on adding a configuration command to enable disable each debug row
+<br>
+• Working on adding configuration to change the debug hud position relatively (like topleft, topright, bottomleft, etc)
+<br>
+
+(The template used for Starting Hytale java plugins development was created by [Up](https://github.com/UpcraftLP), and slightly modified by Kaupenjoe.)
