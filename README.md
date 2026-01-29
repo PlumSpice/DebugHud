@@ -1,4 +1,4 @@
-# MessaginUI Plugin for Hytale
+# DebugHud Plugin for Hytale
 
 A Debug hud with lots of player and world information thats usually needed by players.
 <br>
