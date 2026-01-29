@@ -69,7 +69,7 @@ public class HudCommand extends AbstractAsyncPlayerCommand {
             LOGGER.atInfo().log("Enabling Debug HUD");
             hudStatus.put(playerUUID, true);
             player.getHudManager().setCustomHud(playerRef, new DebugHud(playerRef));
-            DebugHudPlugin.setDebugHudSystem(new DebugHudSystem(0.2f));
+            DebugHudPlugin.setDebugHudSystem(new DebugHudSystem(0.1f));
             playerRef.sendMessage(Message.raw("Enabled Debug HUD."));
         }
         else

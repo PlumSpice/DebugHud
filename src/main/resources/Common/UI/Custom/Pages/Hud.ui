@@ -30,19 +30,141 @@ Group {
     }
 
   Group {
+      LayoutMode: Left;
+      Anchor: (Left: 2, Height: 20);
+
+      Label {
+        Text: "Ping:";
+        Anchor: (Width: 40, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+
+      Label #PingVal {
+        Text: "";
+        Anchor: (Width: 50, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+
+      Label {
+          Text: "|";
+          Anchor: (Width: 10, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+
+      Label {
+          Text: "99th %ile:";
+          Anchor: (Left: 5, Width: 65, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+
+        Label #PingP99Val {
+          Text: "";
+          Anchor: (Width: 50, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+    }
+
+    Group {
         LayoutMode: Left;
         Anchor: (Left: 2, Height: 20);
 
         Label {
+          Text: "World:";
+          Anchor: (Width: 50, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+
+        Label #WorldVal {
+          Text: "";
+          Anchor: (Width: 60, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+
+        Label {
+          Text: "|";
+          Anchor: (Width: 10, Height: 20);
+          Style: (FontSize: 12, TextColor: #96a9be);
+        }
+
+        Label {
           Text: "Biome:";
-          Anchor: (Width: 80, Height: 20);
+          Anchor: (Left: 5, Width: 50, Height: 20);
           Style: (FontSize: 12, TextColor: #96a9be);
         }
 
         Label #BiomeVal {
           Text: "";
-          Anchor: (Width: 200, Height: 20);
+          Anchor: (Width: 100, Height: 20);
           Style: (FontSize: 12, TextColor: #96a9be);
         }
       }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Left: 2, Height: 20);
+
+    Label {
+      Text: "Game Time: {";
+      Anchor: (Width: 80, Height: 20);
+      Style: (FontSize: 12, TextColor: #96a9be);
+    }
+
+    Label #TimeVal {
+      Text: "";
+      Anchor: (Width: 300, Height: 20);
+      Style: (FontSize: 12, TextColor: #96a9be);
+    }
+
+    Label {
+        Text: " }";
+        Anchor: (Width: 10, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+  }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Left: 2, Height: 20);
+
+    Label {
+      Text: "IRL Time: ";
+      Anchor: (Width: 60, Height: 20);
+      Style: (FontSize: 12, TextColor: #96a9be);
+    }
+
+    Label #IRLTimeVal {
+      Text: "";
+      Anchor: (Width: 300, Height: 20);
+      Style: (FontSize: 12, TextColor: #96a9be);
+    }
+  }
+
+  Group {
+      LayoutMode: Left;
+      Anchor: (Left: 2, Height: 20);
+
+      Label {
+        Text: "Speed:";
+        Anchor: (Width: 45, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+
+      Label #SpeedVal {
+        Text: "";
+        Anchor: (Width: 70, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+
+      Label {
+        Text: "|";
+        Anchor: (Width: 10, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+
+      Label #MovementStateVal {
+        Text: "";
+        Anchor: (Width: 300, Height: 20);
+        Style: (FontSize: 12, TextColor: #96a9be);
+      }
+  }
 }
