@@ -4,10 +4,9 @@ A Debug hud with lots of player and world information thats usually needed by pl
 <br>
 <b>Note:</b> command can be used by anyone, and is not restricted by OP, or configuration changes for the commands to be run by anyone. 
 
-### Screenshots
-
-![App Screenshot](Screenshots/img.png)
-<br><br>
+### Commands
+• <b>/hud: </b> Command to Enable/ Disable the Debug hud
+<br>
 
 ### Current Information
 • Player Position
@@ -20,6 +19,17 @@ A Debug hud with lots of player and world information thats usually needed by pl
 <br>
 • Player Speed and movement state
 <br>
+
+### Screenshots
+
+![App Screenshot](Screenshots/img.png)
+<br><br>
+
+![App Screenshot](Screenshots/img_1.png)
+<br><br>
+
+![App Screenshot](Screenshots/img_2.png)
+<br><br>
 
 ### Working On
 • Working on adding more information to the hud
