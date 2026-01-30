@@ -1,7 +1,9 @@
 package com.AnonDex.DebugHud;
 
-import com.AnonDex.DebugHud.DebugHud.DebugHudSystem;
-import com.AnonDex.DebugHud.DebugHud.HudCommand;
+import com.AnonDex.DebugHud.Command.HudConfigCommand;
+import com.AnonDex.DebugHud.Config.HudConfigStore;
+import com.AnonDex.DebugHud.System.DebugHudSystem;
+import com.AnonDex.DebugHud.Command.HudCommand;
 import com.hypixel.hytale.component.ComponentRegistryProxy;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
@@ -21,6 +23,8 @@ public class DebugHudPlugin extends JavaPlugin {
     protected void setup() {
 
         this.getCommandRegistry().registerCommand(new HudCommand());
+        this.getCommandRegistry().registerCommand(new HudConfigCommand());
+        HudConfigStore.load();
 
     }
 
@@ -35,4 +39,5 @@ public class DebugHudPlugin extends JavaPlugin {
             LOGGER.atSevere().log("Failed to register DebugHudSystem: %s", e.getMessage());
         }
     }
+
 }

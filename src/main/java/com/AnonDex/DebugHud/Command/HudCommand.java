@@ -1,5 +1,7 @@
-package com.AnonDex.DebugHud.DebugHud;
+package com.AnonDex.DebugHud.Command;
 
+import com.AnonDex.DebugHud.Mapping.DebugHud;
+import com.AnonDex.DebugHud.System.DebugHudSystem;
 import com.AnonDex.DebugHud.DebugHudPlugin;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;

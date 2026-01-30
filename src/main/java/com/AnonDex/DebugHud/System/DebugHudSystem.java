@@ -1,10 +1,11 @@
-package com.AnonDex.DebugHud.DebugHud;
+package com.AnonDex.DebugHud.System;
 
+import com.AnonDex.DebugHud.Command.HudCommand;
+import com.AnonDex.DebugHud.Mapping.DebugHud;
 import com.hypixel.hytale.component.*;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.DelayedEntitySystem;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
