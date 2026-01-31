@@ -1,5 +1,7 @@
 package com.AnonDex.DebugHud.Mapping;
 
+import com.AnonDex.DebugHud.Config.HudConfigData;
+import com.AnonDex.DebugHud.Config.HudConfigStore;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.math.vector.Vector3d;
@@ -102,6 +104,32 @@ public class DebugHud extends CustomUIHud {
         commandBuilder.set("#IRLTimeVal.Text", String.format("%s", formatted));
         commandBuilder.set("#SpeedVal.Text", String.format("%.2f units/s", speed));
         commandBuilder.set("#MovementStateVal.Text", String.format("%s", movementState));
+
+        //Show/ Hide Sections Based on Config
+
+        HudConfigData configData = HudConfigStore.get(playerRef.getUuid());
+//        try {
+            commandBuilder.set("#showCoordinatesGroup.Visible", configData.showCoordinates);
+            commandBuilder.set("#showPingGroup.Visible", configData.showPing);
+            commandBuilder.set("#showWorldGroup.Visible", configData.showWorld);
+            commandBuilder.set("#showGameTimeGroup.Visible", configData.showGameTime);
+            commandBuilder.set("#showIRLTimeGroup.Visible", configData.showIRLTime);
+            commandBuilder.set("#showSpeedGroup.Visible", configData.showSpeed);
+
+            commandBuilder.set("#mainHud.Background", "#" + configData.hudBackground + configData.hudTransparency);
+//        }
+//        catch (Exception e) {
+//            LOGGER.atSevere().withCause(e).log("Error applying HUD configuration for player: %s", player.getDisplayName());
+//            configData = new HudConfigData();
+//            HudConfigStore.update(playerRef.getUuid(), configData);
+//
+//            commandBuilder.set("#showCoordinatesGroup.Visible", configData.showCoordinates);
+//            commandBuilder.set("#showPingGroup.Visible", configData.showPing);
+//            commandBuilder.set("#showWorldGroup.Visible", configData.showWorld);
+//            commandBuilder.set("#showGameTimeGroup.Visible", configData.showGameTime);
+//            commandBuilder.set("#showIRLTimeGroup.Visible", configData.showIRLTime);
+//            commandBuilder.set("#showSpeedGroup.Visible", configData.showSpeed);
+//        }
     }
 
     public static long getPlayerPingMs(PlayerRef playerRef) {

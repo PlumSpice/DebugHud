@@ -1,7 +1,7 @@
 $C = "../Common.ui";
 
 Group {
-    Anchor: (Width: 580, Height: 350);
+    Anchor: (Width: 580, Height: 380);
     Background: #141c26(0.98);
     LayoutMode: Top;
     Padding: (Full: 20);
@@ -28,25 +28,126 @@ Group {
         LayoutMode: Left;
         Anchor: (Height: 44);
 
-        Label {
-            Text: "Player Name";
-            Anchor: (Width: 100);
-            Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+        $C.@CheckBoxWithLabel #showCoordinates {
+            @Text = "Coordinates";
+            @Checked = true;
+            Anchor: (Height: 28);
         }
 
-        $C.@TextField #NameInput {
-            FlexWeight: 1;
-            PlaceholderText: "Enter name...";
+        $C.@CheckBoxWithLabel #showPing {
+            @Text = "Ping";
+            @Checked = true;
+            Anchor: (Height: 28);
+        }
+
+        $C.@CheckBoxWithLabel #showWorld {
+            @Text = "World/Biome";
+            @Checked = true;
+            Anchor: (Height: 28);
+        }
+
+        $C.@CheckBoxWithLabel #showGameTime {
+            @Text = "Game Time";
+            @Checked = true;
+            Anchor: (Height: 28);
         }
     }
 
     Group {
-        LayoutMode: Center;
-        Padding: (Left: 50);
+        LayoutMode: Left;
         Anchor: (Height: 44);
 
-        $C.@TextButton #SendButton {
-            Text: "SEND";
+        $C.@CheckBoxWithLabel #showIRLTime {
+            @Text = "IRL Time";
+            @Checked = true;
+            Anchor: (Height: 28);
+        }
+
+        $C.@CheckBoxWithLabel #showSpeed {
+            @Text = "Speed";
+            @Checked = true;
+            Anchor: (Height: 28);
+        }
+    }
+
+    Group {
+        LayoutMode: Left;
+        Anchor: (Height: 44);
+
+        Label {
+            Text: "Transperency %";
+            Anchor: (Width: 120);
+            Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+        }
+
+        Slider #hudTransparency {
+            Anchor: (Left: 5, Width: 180, Height: 5);
+            Style: $C.@DefaultSliderStyle;
+            Min: 0;
+            Max: 100;
+            Step: 1;
+            Value: 10;
+        }
+
+        Label {
+            Text: "BG Color: ";
+            Anchor: (Left: 15, Width: 80);
+            Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+        }
+
+        $C.@TextField #hudBackground {
+              FlexWeight: 1;
+              PlaceholderText: "#141c26";
+            }
+    }
+
+    Group {
+        LayoutMode: Left;
+        Anchor: (Height: 60);
+
+        Label {
+            Text: "Hud Position: ";
+            Anchor: (Top: 10, Width: 120);
+            Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+        }
+
+        $C.@DropdownBox #hudPosition {
+            Value: "Top-Left";
+
+            DropdownEntry #topLeft {
+                Text: "Top-Left";
+                Anchor: (Width: 80);
+                Value: "Top-Left";
+            }
+
+            DropdownEntry #topRight {
+                Text: "Top-Right";
+                Anchor: (Width: 80);
+                Value: "Top-Right";
+            }
+
+            DropdownEntry #bottomLeft {
+                Text: "Bottom-Left";
+                Anchor: (Width: 80);
+                Value: "Bottom-Left";
+            }
+
+            DropdownEntry #bottomRight {
+                Text: "Bottom-Right";
+                Anchor: (Width: 80);
+                Value: "Bottom-Right";
+            }
+        }
+    }
+
+
+    Group {
+        LayoutMode: Center;
+        Padding: (Left: 50);
+        Anchor: (Top: 15, Height: 44);
+
+        $C.@TextButton #SaveButton {
+            Text: "SAVE";
             Anchor: (Width: 130, Height: 40);
         }
 

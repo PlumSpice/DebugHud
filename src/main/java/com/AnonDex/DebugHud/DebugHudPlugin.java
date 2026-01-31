@@ -22,10 +22,9 @@ public class DebugHudPlugin extends JavaPlugin {
     @Override
     protected void setup() {
 
+        HudConfigStore.load();
         this.getCommandRegistry().registerCommand(new HudCommand());
         this.getCommandRegistry().registerCommand(new HudConfigCommand());
-        HudConfigStore.load();
-
     }
 
     public static void setDebugHudSystem(DebugHudSystem debugHudSystem)

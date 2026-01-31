@@ -6,15 +6,16 @@ $C = "../Common.ui";
   Pressed: (Background: #2a6bc5, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center))
 );
 
-Group {
-  Anchor: (Left: 10, Top:10, Width: 380, Height: 400);
+Group #mainHud {
+  Anchor: (Left: 10, Top:10, Width: 440, Height: 160);
   Background: #141c26(0.02);
   LayoutMode: Top;
   Padding: (Full: 20);
 
-  Group {
+  Group #showCoordinatesGroup {
       LayoutMode: Left;
       Anchor: (Left: 2, Top:0, Height: 20);
+      Visible: true;
 
       Label {
         Text: "Position:";
@@ -29,9 +30,10 @@ Group {
       }
     }
 
-  Group {
+  Group #showPingGroup {
       LayoutMode: Left;
       Anchor: (Left: 2, Height: 20);
+      Visible: true;
 
       Label {
         Text: "Ping:";
@@ -64,9 +66,10 @@ Group {
         }
     }
 
-    Group {
+    Group #showWorldGroup {
         LayoutMode: Left;
         Anchor: (Left: 2, Height: 20);
+        Visible: true;
 
         Label {
           Text: "World:";
@@ -99,9 +102,10 @@ Group {
         }
       }
 
-  Group {
+  Group #showGameTimeGroup {
     LayoutMode: Left;
     Anchor: (Left: 2, Height: 20);
+    Visible: true;
 
     Label {
       Text: "Game Time: {";
@@ -122,9 +126,10 @@ Group {
       }
   }
 
-  Group {
+  Group #showIRLTimeGroup {
     LayoutMode: Left;
     Anchor: (Left: 2, Height: 20);
+    Visible: true;
 
     Label {
       Text: "IRL Time: ";
@@ -139,9 +144,10 @@ Group {
     }
   }
 
-  Group {
+  Group #showSpeedGroup {
       LayoutMode: Left;
       Anchor: (Left: 2, Height: 20);
+      Visible: true;
 
       Label {
         Text: "Speed:";
