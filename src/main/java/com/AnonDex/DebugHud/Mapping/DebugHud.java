@@ -13,6 +13,8 @@ import com.hypixel.hytale.server.core.entity.entities.player.hud.CustomUIHud;
 import com.hypixel.hytale.server.core.entity.movement.MovementStatesComponent;
 import com.hypixel.hytale.server.core.io.PacketHandler;
 import com.hypixel.hytale.server.core.modules.time.WorldTimeResource;
+import com.hypixel.hytale.server.core.ui.Anchor;
+import com.hypixel.hytale.server.core.ui.Value;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
@@ -20,6 +22,7 @@ import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.WorldMapTracker;
 import org.jspecify.annotations.NonNull;
 
+import javax.swing.plaf.InsetsUIResource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -91,45 +94,95 @@ public class DebugHud extends CustomUIHud {
         double speed = getPlayerSpeed(playerRef);
         String movementState = getPlayerMovementState(playerRef);
 
+        //Get Hud Config Data
+        HudConfigData configData = HudConfigStore.get(playerRef.getUuid());
+        if (configData == null) {
+            LOGGER.atSevere().log("HudConfigData is null for player: %s", player.getDisplayName());
+            return;
+        }
+
+        //Determine HUD Position Group ID
+        String groupId = "";
+        switch (configData.hudPosition)
+        {
+            case "Top-Left":
+                groupId = "#HudTopLeft";
+                break;
+            case "Top-Right":
+                groupId = "#HudTopRight";
+                break;
+            case "Bottom-Left":
+                groupId = "#HudBottomLeft";
+                break;
+            case "Bottom-Right":
+                groupId = "#HudBottomRight";
+                break;
+            default:
+                groupId = "#HudTopLeft";
+                break;
+        }
+        String[] anchors = {"#HudTopLeft", "#HudTopRight", "#HudBottomLeft", "#HudBottomRight"};
+        for (String anchor : anchors) {
+            if (anchor.equals(groupId)) {
+                commandBuilder.set(anchor + ".Visible", true);
+            } else {
+                commandBuilder.set(anchor + ".Visible", false);
+            }
+        }
+
 
         //Set UI Values
-        commandBuilder.set("#PositionVal.Text", String.format("X: %.2f, Y: %.2f, Z: %.2f",
+        commandBuilder.set(groupId + " #PositionVal.Text", String.format("X: %.2f, Y: %.2f, Z: %.2f",
                 currentPosition.getPosition().getX(), currentPosition.getPosition().getY(), currentPosition.getPosition().getZ()));
-        commandBuilder.set("#PingVal.Text", String.format("%d ms", pingMs));
-        commandBuilder.set("#PingP99Val.Text", String.format("%d ms", pingP99));
-        commandBuilder.set("#WorldVal.Text", String.format("%s", worldName));
-        commandBuilder.set("#BiomeVal.Text", String.format("%s", biomeName));
-        commandBuilder.set("#TimeVal.Text", String.format("Hour: %02d (%.2f%%), Date: %s, Moon Phase: %d",
+        commandBuilder.set(groupId + " #PingVal.Text", String.format("%d ms", pingMs));
+        commandBuilder.set(groupId + " #PingP99Val.Text", String.format("%d ms", pingP99));
+        commandBuilder.set(groupId + " #WorldVal.Text", String.format("%s", worldName));
+        commandBuilder.set(groupId + " #BiomeVal.Text", String.format("%s", biomeName));
+        commandBuilder.set(groupId + " #TimeVal.Text", String.format("Hour: %02d (%.2f%%), Date: %s, Moon Phase: %d",
                 hour, dayProgress * 100.0f, dateTime.toLocalDate().toString(), moonPhase));
-        commandBuilder.set("#IRLTimeVal.Text", String.format("%s", formatted));
-        commandBuilder.set("#SpeedVal.Text", String.format("%.2f units/s", speed));
-        commandBuilder.set("#MovementStateVal.Text", String.format("%s", movementState));
+        commandBuilder.set(groupId + " #IRLTimeVal.Text", String.format("%s", formatted));
+        commandBuilder.set(groupId + " #SpeedVal.Text", String.format("%.2f units/s", speed));
+        commandBuilder.set(groupId + " #MovementStateVal.Text", String.format("%s", movementState));
 
         //Show/ Hide Sections Based on Config
+        commandBuilder.set(groupId + " #showCoordinatesGroup.Visible", configData.showCoordinates);
+        commandBuilder.set(groupId + " #showPingGroup.Visible", configData.showPing);
+        commandBuilder.set(groupId + " #showWorldGroup.Visible", configData.showWorld);
+        commandBuilder.set(groupId + " #showGameTimeGroup.Visible", configData.showGameTime);
+        commandBuilder.set(groupId + " #showIRLTimeGroup.Visible", configData.showIRLTime);
+        commandBuilder.set(groupId + " #showSpeedGroup.Visible", configData.showSpeed);
 
-        HudConfigData configData = HudConfigStore.get(playerRef.getUuid());
-//        try {
-            commandBuilder.set("#showCoordinatesGroup.Visible", configData.showCoordinates);
-            commandBuilder.set("#showPingGroup.Visible", configData.showPing);
-            commandBuilder.set("#showWorldGroup.Visible", configData.showWorld);
-            commandBuilder.set("#showGameTimeGroup.Visible", configData.showGameTime);
-            commandBuilder.set("#showIRLTimeGroup.Visible", configData.showIRLTime);
-            commandBuilder.set("#showSpeedGroup.Visible", configData.showSpeed);
+        commandBuilder.set(groupId + ".Background", "#" + configData.hudBackground + configData.hudTransparency);
+        setTextColor(commandBuilder, groupId, configData.hudTextColor);
 
-            commandBuilder.set("#mainHud.Background", "#" + configData.hudBackground + configData.hudTransparency);
-//        }
-//        catch (Exception e) {
-//            LOGGER.atSevere().withCause(e).log("Error applying HUD configuration for player: %s", player.getDisplayName());
-//            configData = new HudConfigData();
-//            HudConfigStore.update(playerRef.getUuid(), configData);
-//
-//            commandBuilder.set("#showCoordinatesGroup.Visible", configData.showCoordinates);
-//            commandBuilder.set("#showPingGroup.Visible", configData.showPing);
-//            commandBuilder.set("#showWorldGroup.Visible", configData.showWorld);
-//            commandBuilder.set("#showGameTimeGroup.Visible", configData.showGameTime);
-//            commandBuilder.set("#showIRLTimeGroup.Visible", configData.showIRLTime);
-//            commandBuilder.set("#showSpeedGroup.Visible", configData.showSpeed);
-//        }
+    }
+
+    public void setTextColor(@NonNull UICommandBuilder commandBuilder, String groupId, String colorHex) {
+
+        //Labels Text Color
+        commandBuilder.set(groupId + " #PositionLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #PingLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #PingSeparator" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #PingP99Label" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #WorldLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #WorldSeparator" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #BiomeLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #TimeLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #TimeClosingLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #IRLTimeLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #SpeedLabel" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #SpeedSeparator" + ".Style.TextColor", "#" + colorHex);
+
+        //Values Text Color
+        commandBuilder.set(groupId + " #PositionVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #PingVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #PingP99Val" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #WorldVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #BiomeVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #TimeVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #IRLTimeVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #SpeedVal" + ".Style.TextColor", "#" + colorHex);
+        commandBuilder.set(groupId + " #MovementStateVal" + ".Style.TextColor", "#" + colorHex);
     }
 
     public static long getPlayerPingMs(PlayerRef playerRef) {

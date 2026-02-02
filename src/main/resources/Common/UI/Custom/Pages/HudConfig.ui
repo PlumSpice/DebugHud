@@ -1,7 +1,7 @@
 $C = "../Common.ui";
 
 Group {
-    Anchor: (Width: 580, Height: 380);
+    Anchor: (Width: 580, Height: 370);
     Background: #141c26(0.98);
     LayoutMode: Top;
     Padding: (Full: 20);
@@ -113,6 +113,7 @@ Group {
 
         $C.@DropdownBox #hudPosition {
             Value: "Top-Left";
+            Anchor: (Width: 180, Height: 40);
 
             DropdownEntry #topLeft {
                 Text: "Top-Left";
@@ -138,12 +139,23 @@ Group {
                 Value: "Bottom-Right";
             }
         }
+
+        Label {
+            Text: "Text Color: ";
+            Anchor: (Left: 15, Width: 80);
+            Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+        }
+
+        $C.@TextField #hudTextColor {
+            FlexWeight: 1;
+            PlaceholderText: "#141c26";
+        }
     }
 
 
     Group {
         LayoutMode: Center;
-        Padding: (Left: 50);
+        Padding: (Left: 10, Top: 15);
         Anchor: (Top: 15, Height: 44);
 
         $C.@TextButton #SaveButton {

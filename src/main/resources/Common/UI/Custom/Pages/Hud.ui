@@ -6,8 +6,32 @@ $C = "../Common.ui";
   Pressed: (Background: #2a6bc5, LabelStyle: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center))
 );
 
-Group #mainHud {
-  Anchor: (Left: 10, Top:10, Width: 440, Height: 160);
+@DefaultTextColor = #96a9be;
+
+Group #HudTopLeft {
+  Anchor: (Left: 10, Top: 10, Width: 440, Height: 160);
+  @HudContent {}
+}
+
+Group #HudTopRight {
+  Anchor: (Right: 10, Top: 10, Width: 440, Height: 160);
+  Visible: false;
+  @HudContent {}
+}
+
+Group #HudBottomLeft {
+  Anchor: (Left: 10, Bottom: 10, Width: 440, Height: 160);
+  Visible: false;
+  @HudContent {}
+}
+
+Group #HudBottomRight {
+  Anchor: (Right: 10, Bottom: 10, Width: 440, Height: 160);
+  Visible: false;
+  @HudContent {}
+}
+
+@HudContent = Group {
   Background: #141c26(0.02);
   LayoutMode: Top;
   Padding: (Full: 20);
@@ -17,16 +41,16 @@ Group #mainHud {
       Anchor: (Left: 2, Top:0, Height: 20);
       Visible: true;
 
-      Label {
+      Label #PositionLabel {
         Text: "Position:";
         Anchor: (Width: 60, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
       Label #PositionVal {
         Text: "";
         Anchor: (Width: 200, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
     }
 
@@ -35,34 +59,34 @@ Group #mainHud {
       Anchor: (Left: 2, Height: 20);
       Visible: true;
 
-      Label {
+      Label #PingLabel {
         Text: "Ping:";
         Anchor: (Width: 40, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
       Label #PingVal {
         Text: "";
         Anchor: (Width: 50, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
-      Label {
+      Label #PingSeparator {
           Text: "|";
           Anchor: (Width: 10, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
-      Label {
+      Label #PingP99Label {
           Text: "99th %ile:";
           Anchor: (Left: 5, Width: 65, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
         Label #PingP99Val {
           Text: "";
           Anchor: (Width: 50, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
     }
 
@@ -71,34 +95,34 @@ Group #mainHud {
         Anchor: (Left: 2, Height: 20);
         Visible: true;
 
-        Label {
+        Label #WorldLabel {
           Text: "World:";
           Anchor: (Width: 50, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
         Label #WorldVal {
           Text: "";
           Anchor: (Width: 60, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
-        Label {
+        Label #WorldSeparator {
           Text: "|";
           Anchor: (Width: 10, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
-        Label {
+        Label #BiomeLabel {
           Text: "Biome:";
           Anchor: (Left: 5, Width: 50, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
 
         Label #BiomeVal {
           Text: "";
           Anchor: (Width: 100, Height: 20);
-          Style: (FontSize: 12, TextColor: #96a9be);
+          Style: (FontSize: 12, TextColor: @DefaultTextColor);
         }
       }
 
@@ -107,22 +131,22 @@ Group #mainHud {
     Anchor: (Left: 2, Height: 20);
     Visible: true;
 
-    Label {
+    Label #TimeLabel {
       Text: "Game Time: {";
       Anchor: (Width: 80, Height: 20);
-      Style: (FontSize: 12, TextColor: #96a9be);
+      Style: (FontSize: 12, TextColor: @DefaultTextColor);
     }
 
     Label #TimeVal {
       Text: "";
       Anchor: (Width: 300, Height: 20);
-      Style: (FontSize: 12, TextColor: #96a9be);
+      Style: (FontSize: 12, TextColor: @DefaultTextColor);
     }
 
-    Label {
+    Label #TimeClosingLabel {
         Text: " }";
         Anchor: (Width: 10, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
   }
 
@@ -131,16 +155,16 @@ Group #mainHud {
     Anchor: (Left: 2, Height: 20);
     Visible: true;
 
-    Label {
+    Label #IRLTimeLabel {
       Text: "IRL Time: ";
       Anchor: (Width: 60, Height: 20);
-      Style: (FontSize: 12, TextColor: #96a9be);
+      Style: (FontSize: 12, TextColor: @DefaultTextColor);
     }
 
     Label #IRLTimeVal {
       Text: "";
       Anchor: (Width: 300, Height: 20);
-      Style: (FontSize: 12, TextColor: #96a9be);
+      Style: (FontSize: 12, TextColor: @DefaultTextColor);
     }
   }
 
@@ -149,28 +173,28 @@ Group #mainHud {
       Anchor: (Left: 2, Height: 20);
       Visible: true;
 
-      Label {
+      Label #SpeedLabel {
         Text: "Speed:";
         Anchor: (Width: 45, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
       Label #SpeedVal {
         Text: "";
         Anchor: (Width: 70, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
-      Label {
+      Label #SpeedSeparator {
         Text: "|";
         Anchor: (Width: 10, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
 
       Label #MovementStateVal {
         Text: "";
         Anchor: (Width: 300, Height: 20);
-        Style: (FontSize: 12, TextColor: #96a9be);
+        Style: (FontSize: 12, TextColor: @DefaultTextColor);
       }
   }
-}
+};

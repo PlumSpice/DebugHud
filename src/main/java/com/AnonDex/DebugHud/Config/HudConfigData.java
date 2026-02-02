@@ -16,6 +16,7 @@ public class HudConfigData {
     public String hudTransparency;
     public Integer hudFontSize;
     public String hudBackground;
+    public String hudTextColor;
 
     public HudConfigData() {
         //Default Values
@@ -32,6 +33,7 @@ public class HudConfigData {
         this.hudColor = "ffffff";
         this.hudFontSize = 12;
         this.hudPosition = "Top-Left";
+        this.hudTextColor = "96a9be";
     }
 
 }

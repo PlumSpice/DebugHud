@@ -43,6 +43,7 @@ public class HudConfigPage extends InteractiveCustomUIPage<HudConfigPage.HudConf
         public String hudBackground;
         public String hudTransparency;
         public String hudPosition;
+        public String hudTextColor;
 
 
         public static final BuilderCodec<HudConfigEventData> CODEC = BuilderCodec
@@ -98,6 +99,11 @@ public class HudConfigPage extends InteractiveCustomUIPage<HudConfigPage.HudConf
                         obj -> obj.hudPosition
                 )
                 .add()
+                .append(new KeyedCodec<>("@hudTextColor", Codec.STRING),
+                        (obj, value) -> obj.hudTextColor = (String) value,
+                        obj -> obj.hudTextColor
+                )
+                .add()
                 .build();
 
         private HudConfigEventData() {
@@ -123,6 +129,7 @@ public class HudConfigPage extends InteractiveCustomUIPage<HudConfigPage.HudConf
         uiCommandBuilder.set("#hudTransparency.Value", transparencyPercentFromHexSafe(data.hudTransparency));
         uiCommandBuilder.set("#hudBackground.Value", data.hudBackground);
         uiCommandBuilder.set("#hudPosition.Value", data.hudPosition);
+        uiCommandBuilder.set("#hudTextColor.Value", data.hudTextColor);
 
         //Save button event
         uiEventBuilder.addEventBinding(
@@ -139,6 +146,7 @@ public class HudConfigPage extends InteractiveCustomUIPage<HudConfigPage.HudConf
                         .append("@hudTransparency", "#hudTransparency.Value")
                         .append("@hudBackground", "#hudBackground.Value")
                         .append("@hudPosition", "#hudPosition.Value")
+                        .append("@hudTextColor", "#hudTextColor.Value")
         );
 
         uiEventBuilder.addEventBinding(
@@ -167,6 +175,7 @@ public class HudConfigPage extends InteractiveCustomUIPage<HudConfigPage.HudConf
             configData.hudBackground = data.hudBackground != null ? data.hudBackground : configData.hudBackground;
             configData.hudTransparency = data.hudTransparency != null ? data.hudTransparency : configData.hudTransparency;
             configData.hudPosition = data.hudPosition != null ? data.hudPosition : configData.hudPosition;
+            configData.hudTextColor = data.hudTextColor != null ? data.hudTextColor : configData.hudTextColor;
             HudConfigStore.update(playerRef.getUuid(), configData);
 
             // Close the page
