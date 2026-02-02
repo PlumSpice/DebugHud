@@ -7,6 +7,8 @@ A Debug hud with lots of player and world information thats usually needed by pl
 ### Commands
 • <b>/hud: </b> Command to Enable/ Disable the Debug hud
 <br>
+• <b>/hudconfig: </b> Command to Configure the Debud hud settings.
+<br>
 
 ### Current Information
 • Player Position
@@ -20,6 +22,11 @@ A Debug hud with lots of player and world information thats usually needed by pl
 • Player Speed and movement state
 <br>
 
+### Update v1.1.0
+• Added Configuration screen to enable/ diable each row.
+<br>
+• You can now change hud position, background, and text color.
+
 ### Screenshots
 
 ![App Screenshot](Screenshots/img.png)
@@ -31,12 +38,21 @@ A Debug hud with lots of player and world information thats usually needed by pl
 ![App Screenshot](Screenshots/img_2.png)
 <br><br>
 
+![App Screenshot](Screenshots/img_5.png)
+<br><br>
+
+![App Screenshot](Screenshots/img_3.png)
+<br><br>
+
+![App Screenshot](Screenshots/img_6.png)
+<br><br>
+
 ### Working On
 • Working on adding more information to the hud
 <br>
-• Working on adding a configuration command to enable disable each debug row
+• <strike>Working on adding a configuration command to enable disable each debug row</strike>
 <br>
-• Working on adding configuration to change the debug hud position relatively (like topleft, topright, bottomleft, etc)
+• <strike>Working on adding configuration to change the debug hud position relatively (like topleft, topright, bottomleft, etc)<strike>
 <br>
 
 (The template used for Starting Hytale java plugins development was created by [Up](https://github.com/UpcraftLP), and slightly modified by Kaupenjoe.)
